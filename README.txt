@@ -6,22 +6,22 @@
 html：
 
 <form class="form" id="rengouForm">
-		<div class="row imgrow">
-			<label>合同图片：</label>
-			<input type="file" id="contractPicture" />
-			<input type="hidden" class="contractPicture" name="contractPicture" />
-			<div class="showimg">
-				<img src="../resources/image/upload.png" />
-			</div>
-			<span class="Perr">请选择图片</span>
+	<div class="row imgrow">
+		<label>合同图片：</label>
+		<input type="file" id="contractPicture" />
+		<input type="hidden" class="contractPicture" name="contractPicture" />
+		<div class="showimg">
+			<img src="../resources/image/upload.png" />
 		</div>
-		<div class="row subm_action">
-			<span class="cancel">取消</span>
-			<span class="sure sureCusRg">确定</span>
-		</div>
-	</form>
+		<span class="Perr">请选择图片</span>
+	</div>
+	<div class="row subm_action">
+		<span class="cancel">取消</span>
+		<span class="sure sureCusRg">确定</span>
+	</div>
+</form>
   
-  javascript:
+javascript:
   
   $(function() {
 		//上传图片
@@ -58,27 +58,26 @@ html：
 javascript:
 
 $(function() {
-		//图片上传
-		$('.imageUpload').ImageCropper({
-			title: '项目图片上传',
-			aspectRatio: 210 / 156,
-			server: '/img/uploadImgLog',
-			success: function(data) {
-				console.log(data);
-				var imgString = data.detaiImgPath + "-" + data.listImgPath;
-				var imgInnerbox = '<div class="imginner" ><img src=' + data.detaiImgPath + '  width="210" height="156"/><div class="del">删除</div><input type="hidden" value=' + imgString + ' name="projectPicture" required="required"></div>';
-				$('.imageUpload').before(imgInnerbox);
-				$('.imginner .del').off().on('click', function() {
-					$(this).parent('.imginner').remove();
-
-				})
-			},
-			error: function(index) {
-				//layer.close(index);
-			}
-		});
+	//图片上传
+	$('.imageUpload').ImageCropper({
+		title: '项目图片上传',
+		aspectRatio: 210 / 156,
+		server: '/img/uploadImgLog',
+		success: function(data) {
+			console.log(data);
+			var imgString = data.detaiImgPath + "-" + data.listImgPath;
+			var imgInnerbox = '<div class="imginner" ><img src=' + data.detaiImgPath + '  width="210" height="156"/><div class="del">删除</div><input type="hidden" value=' + imgString + ' name="projectPicture" required="required"></div>';
+			$('.imageUpload').before(imgInnerbox);
+			$('.imginner .del').off().on('click', function() {
+				$(this).parent('.imginner').remove();
+			})
+		},
+		error: function(index) {
+			//layer.close(index);
+		}
+	});
 		//删除图片
-		$('.imginner .del').off().on('click', function() {
-			$(this).parent('.imginner').remove();
-		})	
-	})
+	$('.imginner .del').off().on('click', function() {
+		$(this).parent('.imginner').remove();
+	})	
+})
